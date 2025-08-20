@@ -20,7 +20,7 @@ yargs(hideBin(process.argv))
       });
     },
     (argv) => {
-      addRepo(argv.file) ;
+      addRepo(argv.file);
     }
   )
   .command(
@@ -47,7 +47,9 @@ yargs(hideBin(process.argv))
         type: "string",
       });
     },
-    revertRepo
+    (argv) => {
+      revertRepo(argv.commitID);
+    }
   )
   .demandCommand(1, "You need to give atleast one command")
   .help().argv;
