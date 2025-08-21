@@ -73,7 +73,7 @@ function startServer() {
   app.use(bodyParser.json());
   app.use(express.json());
 
-  const mongoURI = process.env.MONGODG_URI;
+  const mongoURI = process.env.MONGODB_URI;
 
   mongoose
     .connect(mongoURI)
