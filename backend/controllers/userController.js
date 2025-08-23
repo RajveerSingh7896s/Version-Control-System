@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { MongoClient, ReturnDocument } = require("mongodb");
+const { MongoClient } = require("mongodb");
 const dotenv = require("dotenv");
 const ObjectId = require("mongodb").ObjectId;
 
@@ -38,6 +38,9 @@ const signup = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      repositories: [],
+      followedUsers: [],
+      starRepos: [],
     };
 
     const result = await usersCollection.insertOne(newUser);
@@ -147,7 +150,7 @@ const updateUserProfile = async (req, res) => {
       return res.status(404).json({ message: "User Not Found!" });
     }
 
-    res.json({message:"Profile updated successfully!"});
+    res.json({ message: "Profile updated successfully!" });
   } catch (err) {
     console.error("Error during updation : ", err.message);
     res.status(500).send("Server Error!");
@@ -165,11 +168,11 @@ const deleteUserProfile = async (req, res) => {
       _id: new ObjectId(currentID),
     });
 
-    if(result.deleteCount == 0){
-      return res.status(404).json({message:"User Not Found!"});
+    if (result.deleteCount == 0) {
+      return res.status(404).json({ message: "User Not Found!" });
     }
 
-    res.json({message:"Users profile deleted!"}) ;
+    res.json({ message: "Users profile deleted!" });
   } catch (err) {
     console.error("Error during deleting : ", err.message);
     res.status(500).send("Server Error!");
