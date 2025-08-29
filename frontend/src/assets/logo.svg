@@ -1,0 +1,11 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="#" stroke="#fff" stroke-width="5"/>
+  
+  <!-- Flow arrows -->
+  <path d="M60 100 Q100 40 140 100" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M60 100 Q100 160 140 100" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Central dot -->
+  <circle cx="100" cy="100" r="8" fill="#fff"/>
+</svg>

@@ -51,7 +51,7 @@ const signup = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.json({ token });
+    res.json({ token , userId: result.insertedId });
   } catch (err) {
     console.error("Error in signing up : ", err);
     res.status(500).send("Server Error!!");
@@ -67,13 +67,13 @@ const login = async (req, res) => {
 
     const user = await usersCollection.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "Invalid Creadential" });
+      return res.status(400).json({ message: "Invalid Credentials" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid Creadential" });
+      return res.status(400).json({ message: "Invalid Credentials" });
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
